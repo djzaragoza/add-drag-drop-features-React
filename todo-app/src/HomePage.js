@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import TaskForm from './TaskForm';
 import { editTask, getTasks, deleteTask } from './requests';
 
-function HomePage({ tasks }) {
+function HomePage ({ tasks }) {
     const [items, setItems] = useState([]);
     const [todoItems, setTodoItems] = useState([]);
     const [doneItems, setDoneItems] = useState([]);
@@ -14,7 +14,7 @@ function HomePage({ tasks }) {
   const onDragEnd = async (evt) => {
       const { source } = evt;
       let item = {};
-      if (source.droppableId == "todoDroppable") {
+      if (source.droppableId == 'todoDroppable') {
         item = todoItems[source.index];
         item.done = true;
       }
@@ -49,7 +49,7 @@ function HomePage({ tasks }) {
       }
     }, [tasks]);
   return (
-      <div className="App">
+      <div className='App'>
         <div className='col-12'>
           <TaskForm />
           <br />
@@ -57,7 +57,7 @@ function HomePage({ tasks }) {
         <div className='col-12'>
           <div className='row list'>
             <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId="todoDroppable">
+              <Droppable droppableId='todoDroppable'>
                 {(provided, snapshot) => (
                   <div
                     className='droppable'
@@ -65,7 +65,7 @@ function HomePage({ tasks }) {
                   >
                     &nbsp;
                     <h2>To Do</h2>
-                    <div class="list-group">
+                    <div class='list-group'>
                       {todoItems.map((item, index) => (
                         <Draggable
                           key={item.id}
@@ -81,18 +81,18 @@ function HomePage({ tasks }) {
                             >
                               {item.description}
                               <a onClick={removeTodo.bind(this, item)}>
-                                <i class="fa fa-close"></i>
+                                <i class='fa fa-close'></i>
                               </a>
                             </div>
-                          )}
+                          )};
                         </Draggable>
-                      ))}
+                      ))};
                     </div>
                     {provided.placeholder}
                   </div>
-                )}
+                )};
               </Droppable>
-              <Droppable droppableId="doneDroppable">
+              <Droppable droppableId='doneDroppable'>
                 {(provided, snapshot) => (
                   <div
                     className='droppable'
@@ -100,7 +100,7 @@ function HomePage({ tasks }) {
                   >
                     &nbsp;
                     <h2>Done</h2>
-                    <div class="list-group">
+                    <div class='list-group'>
                       {doneItems.map((item, index) => (
                         <Draggable
                           key={item.id}
@@ -116,16 +116,16 @@ function HomePage({ tasks }) {
                             >
                               {item.description}
                               <a onClick={removeTodo.bind(this, item)}>
-                                <i class="fa fa-close"></i>
+                                <i class='fa fa-close'></i>
                               </a>
                             </div>
-                          )}
+                          )};
                         </Draggable>
-                      ))}
+                      ))};
                     </div>
                     {provided.placeholder}
                   </div>
-                )}
+                )};
               </Droppable>
             </DragDropContext>
           </div>
@@ -136,7 +136,7 @@ function HomePage({ tasks }) {
   const mapStateToProps = state => {
     return {
       tasks: state.tasks,
-    }
+    };
   }
   export default connect(
     mapStateToProps,
